@@ -32,18 +32,23 @@ class FilterObject extends Component{
     }
 
     handleOnClick() {
-        let {unFilteredArray, userInput, filteredArray} = this.state
+        let {unFilteredArray, userInput} = this.state
 
-        unFilteredArray.forEach((element) => {
+        let newArray = unFilteredArray.filter((element) => {
+            let newNum
+
             for(let key in element){
                 if (key === userInput){
-                    filteredArray.push(element)
+                    newNum = element
                 }
             }
-        });
-        
+
+            return newNum
+        })
+
         this.setState({
-            userInput: ''
+            filteredArray: newArray,
+             userInput: ''
         })
     }
 

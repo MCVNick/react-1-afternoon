@@ -18,21 +18,30 @@ class EvenAndOdd extends Component{
     }
 
     handleOnClick() {
-        let {evenArray, oddArray, userInput} = this.state
+        let {userInput} = this.state
 
+        let newArr = userInput.split(',')
+        let newEvens = []
+        let newOdds = []
 
-        if(userInput % 2 === 0){
-            evenArray.push(userInput)
-            this.setState({
-                evenArray: evenArray
-            })
-        }
-        else {
-            oddArray.push(userInput)
-            this.setState({
-                oddArray: oddArray
-            })
-        }
+        newArr.forEach((element, index, array) => {
+            if(element % 2 === 0){
+                newEvens.push(element)
+                this.setState({
+                    evenArray: newEvens,
+                    oddArray: newOdds
+                })
+            }
+            else {
+                newOdds.push(element)
+                this.setState({
+                    oddArray: newOdds,
+                    evenArray: newEvens
+                })
+            }
+        });
+
+        
 
         this.setState({
             userInput: ''
